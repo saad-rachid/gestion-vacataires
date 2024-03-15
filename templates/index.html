@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Gestion Vacataires</title>
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+    rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="{% static 'media/ENSAM.png' %}">
+                    
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">
+                        close
+                    </span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="{% url 'home' %}" class="active">
+                    <span class="material-icons-sharp">grid_view</span>
+                    <h3>Tableau de bord</h3>
+                </a>
+
+                <a href="{% url 'cours' %}">
+                    <span class="material-icons-sharp">book</span>
+                    <h3>Filieres</h3>
+                </a>
+
+                <a href="{% url 'add' %}"> 
+                    <span class="material-icons-sharp">add</span>
+                    <h3>Ajouter vacataire</h3>
+                </a>
+                <a href="{% url 'logout' %}">
+                    <span class="material-icons-sharp">logout</span>
+                    <h3>Deconnexion</h3>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-container">
+            <!--
+                <div class="search">
+                <span  class="material-icons-sharp" > search </span>
+                <input type="search" placeholder="search here">
+            </div>
+            -->
+            
+            <div class="insights">
+                <div class="Professor">
+                    <span class="material-icons-sharp">person</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Apperçu des vacataires</h3>
+                            <h4>Total vacataires:  </h4>
+                            <h4>vacataires actifs: </h4>       
+                            <h4>vacataires presents:  </h4>
+                            <h4>vacataires absents: </h4>     
+                        </div>
+            
+                    </div>    
+                </div>
+                    <!-----------END OF SALES------------------------>
+                <div class="Course">
+                    <span class="material-icons-sharp">school</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Apperçu des départements</h3>
+                            <h4>Genie mecanique: </h4>   
+                            <h4>Genie electrique: </h4>
+                            <h4>Maths appliquees et genie informatique:  </h4>
+                            <h4>Genie mecanique:  </h4>   
+                            <h4>Genie electrique: </h4>
+                            <h4>Maths appliquees et genie informatique:   </h4>   
+                            <h4>Genie electrique: </h4>
+                        </div>
+                    </div>
+                </div>
+                        <!-----------END OF SALES------------------------>
+            </div>
+            <div class="list-vac">
+                <h2>Liste des vacataires </h2>
+                <!-- Search block -->
+                <div class="search-block">
+                    <input type="search" id="search-input" placeholder="Search by name">
+                    <button id="search-button"><span style="font-size: small;" class="material-icons-sharp">
+                        search
+                    </span>
+                    </button>
+                </div>
+                <table id="vacataire-table">
+                        <thead>
+                            <tr>
+                                <!-- Table header cells -->
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Departement</th>
+                                <th>
+                                    
+                                </th>
+                            </tr>
+                        </thead>
+                   
+                    <tbody>
+                        <!-- Table rows -->
+                        {% for l in list%}
+                        <tr>
+                            <td>{{l.user.get_first_name}}</td>
+                            <td>{{l.user.get_last_name}}</td>
+                            <td>{{l.dept}}</td>
+                            <td class="primary"><a href="{% url 'details' name=l.user.get_full_name  %}"><span class="material-icons-sharp"> visibility</span>voir</a></td>                            
+                        </tr>   
+                        {% endfor %}  
+                    </tbody>
+                </table>
+               <!--<a href="#">show all</a> --->
+            </div>
+        </main>
+        <!---THE END  OF MAIN------>
+
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+                
+                <div class="profile">
+                    <div class="info">
+                        <p><b>{{user.get_full_name}}</b></p>
+                        <small class="text-muted">Service pédagogique</small>
+                    </div>
+                    <div class="profile-photo">
+                        <a href="#"><img src="{% static 'media/ENSAM.png' %}" ></a>
+                    </div>
+                </div>
+            </div>
+            <!--END OF TOP-->
+
+            <div class="Active-vac">
+                <h2>Vacataires Abscents </h2>
+                <div class="updates">
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="{%static 'media/ENSAM.png'%}" >
+                        </div>
+                        <div class="message">
+                            <p><b>saad rachid</b></p>
+                            <!--small class="text-muted">fi</small-->
+                        </div>
+                    </div>                    
+                </div>
+                <!--
+
+                    <div class="add-profile">
+                    <a href="Add.html">
+                        <div>
+                            <span class="material-icons-sharp">add</span>
+                            <h3>Add Profile</h3>
+                        </div>
+                    </a>
+                    
+                </div>
+                -->
+                
+            </div>
+
+            <div class="Active-vac">
+                <h2>Vacataires Presents </h2>
+                <div class="updates">
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="{% static 'media/ENSAM.png'%}" >
+                        </div>
+                        <div class="message">
+                            <p><b>saad rachid</b></p>
+                            <!--small class="text-muted">2 Minutes Ago</small-->
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+  <script src="{% static 'js/main.js' %}"> </script>
+  
+</html>

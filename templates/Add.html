@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/add.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <title>Add vacataire</title>
+</head>
+<body>
+    <div class="container">
+            <div class="profile">
+                <aside>
+                    <div class="top">
+                        <div class="logo">
+                            <img src="{% static 'media/ENSAM.png '%}" alt="Logo ENSAM">
+                        </div>
+                        <div class="close" id="close-btn">
+                            <span class="material-icons-sharp">
+                                close
+                            </span>
+                        </div>
+                    </div>
+                    <div class="sidebar">
+                        <a href="{% url 'home' %}" >
+                            <span class="material-icons-sharp">grid_view</span>
+                            <h3>Tableau de bord</h3>
+                        </a>
+        
+                        <a href="{% url 'cours' %}" >
+                            <span class="material-icons-sharp">book</span>
+                            <h3>Filieres</h3>
+                        </a>
+        
+                        <a href="{% url 'add' %}" class="active"> 
+                            <span class="material-icons-sharp">add</span>
+                            <h3>Ajouter vacataire</h3>
+                        </a>
+                        <a href="{% url 'logout' %}">
+                            <span class="material-icons-sharp">logout</span>
+                            <h3>Deconnexion</h3>
+                        </a>
+                    </div>
+                </aside>
+            </div>
+            <div>
+                <main class="main-container">    
+                    <form action="" method ="POST">
+                        {% csrf_token %}
+                        <div class="form-first">
+                            <div class="details">
+                                <span class="title"> Ajouter vacataire </span>
+                                <hr width= "70%">
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label for="">Full Name</label>
+                                        <input type="text" placeholder="Enter The Name"  name="name">
+                                    </div>
+            
+                                    <div class="input-field">
+                                        <label for="">CIN</label>
+                                        <input type="text" placeholder="Enter The CIN"  name="cin">
+                                    </div>
+            
+                                    <div class="input-field">
+                                        <label for="">Email</label>
+                                        <input type="text" placeholder="Enter Email address"  name="email">
+                                    </div>
+            
+                                    <div class="input-field">
+                                        <label for="">Password</label>
+                                        <input  name="pass1" type="password" placeholder="Enter the Password" placeholder="Enter the Password" pattern=".{8,}" title="Password must be at least 8 characters long" >
+                                    </div>
+            
+                                    <div class="input-field">
+                                        <label for=""> Confirm Password</label>
+                                        <input  name="pass2" type="password" placeholder="confirm the Password" placeholder="Enter the Password" pattern=".{8,}" title="Password must be at least 8 characters long" >
+                                    </div>
+            
+                                
+                            </div>
+                            <center>
+                                <button class="submitBtn">
+                                    <span class="btn">Suivant</span>
+                                    <i style="margin-left: 1rem;" class="uil uil-navigator"></i>
+                                </button>
+                            </center>
+                                
+                          
+            
+                        </div>
+                        
+                    </form>
+                </main>
+                
+            </div>
+            <div class="right">
+                <div class="top">
+                    <button id="menu-btn">
+                        <span class="material-icons-sharp">menu</span>
+                    </button>
+                    
+                    <div class="profile">
+                        <div class="info">
+                            <p><b>{{user.get_full_name}}</b></p>
+                            <small class="text-muted">Service pédagogique</small>
+                        </div>
+                        <div class="profile-photo">
+                            <a href="#"><img src="{% static 'media/ENSAM.png' %}" ></a>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+                <!--END OF TOP-->
+    </div>
+    
+</body>
+</html>

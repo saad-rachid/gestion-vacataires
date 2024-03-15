@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/add.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <title>Add vacataire</title>
+</head>
+<body>
+    <div class="container">
+            <div class="profile">
+                <aside>
+                    <div class="top">
+                        <div class="logo">
+                            <img src="{% static 'media/ENSAM.png '%}" alt="Logo ENSAM">
+                        </div>
+                        <div class="close" id="close-btn">
+                            <span class="material-icons-sharp">
+                                close
+                            </span>
+                        </div>
+                    </div>
+                    <div class="sidebar">
+                        <a href="{% url 'home' %}" >
+                            <span class="material-icons-sharp">grid_view</span>
+                            <h3>Tableau de bord</h3>
+                        </a>
+        
+                        <a href="{% url 'cours' %}" >
+                            <span class="material-icons-sharp">book</span>
+                            <h3>Filieres</h3>
+                        </a>
+        
+                        <a href="{% url 'add' %}" class="active"> 
+                            <span class="material-icons-sharp">add</span>
+                            <h3>Ajouter vacataire</h3>
+                        </a>
+                        <a href="{% url 'logout' %}">
+                            <span class="material-icons-sharp">logout</span>
+                            <h3>Deconnexion</h3>
+                        </a>
+                    </div>
+                </aside>
+            </div>
+            <div>
+                <main class="main-container">    
+                    <form action="" method="POST">
+                        {%csrf_token%}
+                      <div class="form-first">
+                        <div class="details">
+                            <span class="title">Creer le profile vacataire </span>
+                            <div class="fields">
+                              <div class="input-field">
+                                <label for="">Fonction</label>
+                                <select id="fonction" name="Fonction">
+                                    <option name="Fonction" value="" >Choose the Fonction</option>
+                                    <option name="Fonction" value="ingenieur">ingenieur</option>
+                                    <option name="Fonction" value="Ing en chef">Ing en chef</option>
+                                    <option name="Fonction" value="prof assistant">prof assistant</option>
+                                    <option name="Fonction" value="PROF_ABILITE">PROF_ABILITE</option>
+                                    <option name="Fonction" value="DOCTORANT">DOCTORANT</option>
+                                    <option name="Fonction" value="PES">PES</option>
+                                    <option name="Fonction" value="PROF AGREGE">PROF AGREGE</option>
+                                  </select>
+                            </div>
+    
+                            <div class="input-field">
+                                <label for="departement">Departement</label>
+                                <select id="departement" name="departement">
+                                  <option name="departement" value="">Choose the departement</option>
+                                  <option name="departement" value="mathematics">Mathematics</option>
+                                  <option name="departement" value="computer_science">Computer Science</option>
+                                  <option name="departement" value="biology">Biology</option>
+                                  <!-- Add more options as needed -->
+                                </select>
+                            </div>
+                              <div class="input-field">
+                                <label for="">Phone Number</label>
+                                <input  name="tel" type="tel" id="phone" placeholder="+212"  pattern="\+212\d{9}" title="Please enter a valid phone number starting with '+212'">
+                            </div>
+                            <div class="input-field">
+                              <label for="">Banque</label>
+                              <select id="departement" name="Banque">
+                                <option name="Banque" value="" >Choose the Bank</option>
+                                <option name="Banque" value="CIH">CIH</option>
+                                <option name="Banque" value="BMCE">BMCE</option>
+                                <option name="Banque" value="chaabi">chaabi </option>
+                                <!-- Add more options as needed -->
+                              </select>
+                          </div>
+                            <div class="input-field">
+                              <label for="">RIB</label>
+                              <input name="rib" type="text" placeholder="Enter Email address" >
+                          </div>
+                          
+                          <div class="input-field">
+                            <label for="">Nombre de heures</label>
+                            <input  name="nbre"type="number" placeholder="Enter " >
+                        </div>
+                                <div class="input-field">
+                                    <label for="">Remmuneration</label>
+                                    <input  name="remuniration"type="number" step="any" placeholder="Enter " >
+                                </div>
+        
+                                <div class="input-field">
+                                    <label for="">Finish Date</label>
+                                    <input  name="finish" type="date">
+                                </div> 
+                            </div>
+                            
+                        </div>
+                            <center>
+                                <button class="submitBtn">
+                                    <span class="btn">Ajouter</span>
+                                    <i style="margin-left: 1rem;" class="uil uil-navigator"></i>
+                                </button>
+                            </center>
+                                
+                          
+            
+                        </div>
+                        
+                    </form>
+                </main>
+                
+            </div>
+            <div class="right">
+                <div class="top">
+                    <button id="menu-btn">
+                        <span class="material-icons-sharp">menu</span>
+                    </button>
+                    
+                    <div class="profile">
+                        <div class="info">
+                            <p><b>{{user.get_full_name}}</b></p>
+                            <small class="text-muted">Service pédagogique</small>
+                        </div>
+                        <div class="profile-photo">
+                            <a href="#"><img src="{% static 'media/ENSAM.png' %}" ></a>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+                <!--END OF TOP-->
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,117 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Fichiers des notes</title>
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+    rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+  <body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="{% static 'media/ENSAM.png' %}">
+                    
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">
+                        close
+                    </span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="{% url 'home' %}" >
+                    <span class="material-icons-sharp">grid_view</span>
+                    <h3>Tableau de bord</h3>
+                </a>
+
+                <a href="{% url 'cours' %}" class="active">
+                    <span class="material-icons-sharp">book</span>
+                    <h3>Filieres</h3>
+                </a>
+
+                <a href="{% url 'add' %}"> 
+                    <span class="material-icons-sharp">add</span>
+                    <h3>Ajouter vacataire</h3>
+                </a>
+                <a href="{% url 'logout' %}">
+                    <span class="material-icons-sharp">logout</span>
+                    <h3>Deconnexion</h3>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-container">
+           
+            <div class="list-vac">
+                <h2>Liste des Elements  ~ {{filiere}} </h2>
+                <!-- Search block -->
+                <div class="search-block">
+                    <input type="search" id="search-input" placeholder="Search by name">
+                    <button id="search-button"><span style="font-size: small;" class="material-icons-sharp">
+                        search
+                    </span>
+                    Search</button>
+                </div>
+                <table id="vacataire-table">
+                        <thead>
+                            <tr>
+                                <!-- Table header cells -->
+                                <th>Promotion</th>
+                                <th>Element De Module</th>
+                                <th>Fichie de note(v0)</th>
+                                <th>Fichie de note</th>
+                            </tr>
+                        </thead>
+                   
+                    <tbody>
+                        <!-- Table rows -->
+                        <tr>
+                            <td>1er annee</td>
+                            <td>Mathematics</td>
+                            <td>                                
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                     {% csrf_token %}
+                                    <span>
+                                    {{form.file}}
+                                    </span> <br>
+                                    <span><input type="submit" value= "upload"></span>
+                                </form>    
+                            </td>
+                            <td><a href="{{file.url}}" Download><span class="material-icons-sharp"> file_download</span>Download</a></td>
+                        </tr>     
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <!---THE END  OF MAIN------>
+
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+                
+                <div class="profile">
+                    <div class="info">
+                        <p><b>{{user.get_full_name}}</b></p>
+                        <small class="text-muted">Service pédagogique</small>
+                    </div>
+                    <div class="profile-photo">
+                        <a href="#"><img src="{% static 'media/ENSAM.png' %}" ></a>
+                    </div>
+                </div>
+            </div>
+        </div>    
+            <!--END OF TOP-->
+    </div>
+  </body>
+</html>

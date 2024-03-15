@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Gestion Vacataires</title>
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+    rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/Courses.css' %} ">
+  </head>
+<body>
+    <div class="container">
+        <div class="profile">
+            <aside>
+                <div class="top">
+                    <div class="logo">
+                        <img src="{% static 'media/ENSAM.png' %}" alt="Logo ENSAM">
+                    </div>
+                    <div class="close" id="close-btn">
+                        <span class="material-icons-sharp">
+                            close
+                        </span>
+                    </div>
+                </div>
+                <div class="sidebar">
+                    <a href="{% url 'home' %}" >
+                        <span class="material-icons-sharp">grid_view</span>
+                        <h3>Tableau de bord</h3>
+                    </a>
+    
+                    <a href="{% url 'cours' %}" class="active">
+                        <span class="material-icons-sharp">book</span>
+                        <h3>Filieres</h3>
+                    </a>
+    
+                    <a href="{% url 'add' %}"> 
+                        <span class="material-icons-sharp">add</span>
+                        <h3>Ajouter vacataire</h3>
+                    </a>
+                    <a href="{% url 'logout' %}">
+                        <span class="material-icons-sharp">logout</span>
+                        <h3>Deconnexion</h3>
+                    </a>
+                </div>
+            </aside>
+        </div>
+        <div>
+            <main class="main-container">
+                <!-- Search block -->
+                <div class="search">
+                    <input type="search" id="search-input" placeholder="Search by name">
+                    <button id="search-button"><span style="font-size: small;" class="material-icons-sharp">
+                        search
+                    </span>
+                    Search</button>
+                </div>
+                
+                <div class="insights">
+                    <div>
+                        <a href="{% url 'filiere' name='INDIA' %}"><span class="material-icons-sharp">person</span>
+                        <div class="middle">
+                            <div class="left">
+                                <h3>INDIA</h3>
+                                <h4>Total vacataires:100 </h4>
+                                <h4>Departement:</h4>
+                                <h4>chef de felire:</h4>       
+                            </div>
+                
+                        </div></a>
+                    </div>
+
+                    <div>
+                        <a href="{% url 'filiere' name='GITN' %}"><span class="material-icons-sharp">person</span>
+                        <div class="middle">
+                            <div class="left">
+                                <h3>GITN</h3>
+                                <h4>Total vacataires:100 </h4>
+                                <h4>Departement:</h4>
+                                <h4>chef de felire:</h4>       
+                            </div>
+                
+                        </div></a>
+                    </div>
+
+                    <div>
+                        <a href="{% url 'filiere' name='API' %}"><span class="material-icons-sharp">person</span>
+                        <div class="middle">
+                            <div class="left">
+                                <h3>API</h3>
+                                <h4>Total vacataires:100 </h4>
+                                <h4>Departement:</h4>
+                                <h4>chef de felire:</h4>       
+                            </div>
+                
+                        </div></a>
+                    </div>
+                    
+
+                    <div>
+                        <a href="{% url 'filiere' name='EEIN' %}"><span class="material-icons-sharp">person</span>
+                        <div class="middle">
+                            <div class="left">
+                                <h3>EEIN</h3>
+                                <h4>Total vacataires:100 </h4>
+                                <h4>Departement:</h4>
+                                <h4>chef de felire:</h4>       
+                            </div>
+                
+                        </div></a>
+                    </div>
+                </div>
+            </main>
+            
+        </div>
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+                
+                <div class="profile">
+                    <div class="info">
+                        <p><b>{{user.get_full_name}}</b></p>
+                        <small class="text-muted">Service pédagogique</small>
+                    </div>
+                    <div class="profile-photo">
+                        <a href="#"><img src="{% static 'media/ENSAM.png' %}" ></a>
+                    </div>
+                </div>
+            </div>
+        </div>    
+            <!--END OF TOP-->
+</div>
+    
+</body>
+<script>
+    document.getElementById('search-button').addEventListener('click', function () {
+        var searchInput = document.getElementById('search-input').value.toLowerCase();
+        var insights = document.querySelectorAll('.insights div');
+
+        for (var i = 0; i < insights.length; i++) {
+            var insight = insights[i];
+            var insightText = insight.textContent.toLowerCase();
+
+            if (insightText.includes(searchInput)) {
+                insight.style.display = 'block';
+            } else {
+                insight.style.display = 'none';
+            }
+        }
+    });
+</script>
+</html>
